@@ -16,7 +16,7 @@ An XGBoost ‘XGBRanker()’ model was initialized and tuned to get a reasonable
 After reading both the training and test files, the ‘data.describe()’ function gave the
 following results.
 
-![Picture 1]([/images/img.jpg](https://github.com/29xghost/Learning-to-Rank-XGBoost-Optuna/blob/main/Images/Picture1.jpg) "Picture 1")
+![Picture 1](https://github.com/29xghost/Learning-to-Rank-XGBoost-Optuna/blob/main/Images/Picture1.jpg)
 
 Figure 2
 
