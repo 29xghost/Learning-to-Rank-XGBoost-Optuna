@@ -35,13 +35,10 @@ The first rule of thumb while solving a data science problem has always been spl
 ●	Initial NDCG score:
 An initial NDCG score was calculated using a model with no user-set parameters, the goal now is to increase this score by tuning the hyperparameters and performing k- fold cross-validation on the found parameters.
 
-●	Hyperparameter tuning Setup:
-○	Library used:
-‘Optuna’ was used for hyperparameter tuning, this library recursively creates models and picks up a random set of parameters from the user-provided grid of parameters, it keeps track of the best-found combination of parameters in each iteration.
-○	How optuna Works:
-Optuna requires the user to create an objective function where the model and a grid of parameters are defined, then, an optuna ‘space’ is created where the hyperparameter tuning takes place by repetitive calls(trials) to the objective function. The no of trials can be set by the user.
-●	Hyperparameter Tuning process:
-Generally, tuning is done by placing all parameter ranges in a grid and running the tuning process, but here, the tuning process was done in a step-by-step process, that is, tuning only a few parameters in one step, getting the best values out of those, then predicting another parameter but this time, keeping previously found parameter values fixed. For this, a total of 7 objective functions were created. In the first function, a grid for ‘objective’,’min_child_weight’ and ‘max_depth’ was given, rest being set to default values, the best set was found to be:
+●	Hyperparameter tuning Setup: <br>
+○	Library used:‘Optuna’ was used for hyperparameter tuning, this library recursively creates models and picks up a random set of parameters from the user-provided grid of parameters, it keeps track of the best-found combination of parameters in each iteration. <br>
+○	How optuna Works:Optuna requires the user to create an objective function where the model and a grid of parameters are defined, then, an optuna ‘space’ is created where the hyperparameter tuning takes place by repetitive calls(trials) to the objective function. The no of trials can be set by the user. <br>
+●	Hyperparameter Tuning process:Generally, tuning is done by placing all parameter ranges in a grid and running the tuning process, but here, the tuning process was done in a step-by-step process, that is, tuning only a few parameters in one step, getting the best values out of those, then predicting another parameter but this time, keeping previously found parameter values fixed. For this, a total of 7 objective functions were created. In the first function, a grid for ‘objective’,’min_child_weight’ and ‘max_depth’ was given, rest being set to default values, the best set was found to be:
 
 ![Picture 3](https://github.com/29xghost/Learning-to-Rank-XGBoost-Optuna/blob/main/Images/Picture3.jpg)
 
@@ -49,7 +46,7 @@ then, in the next step, to get a more precise value of these parameters, a tight
  
 function, the parameters found above were kept fixed along with a grid for gamma and a tighter bound grid for the same in function four, the value of gamma in both functions didn’t affect the best NDCG, so gamma was not taken as a tuned hyperparameter in the final set, in function five and six, ‘subsample’ and ‘colsample_bytree’ were tuned in the same way. Finally, in the last and final function, the ‘eval_metric’ was tuned. After each objective function iteration, the best set of parameters were stored in a dictionary ‘final_params’. The final set of parameters obtained were:
 final_params=  {'eval_metric':'ndcg',  'objective':'rank:pairwise',  'max_depth':3
-,'min_child_weight':1, 'subsample':0.8, 'colsample_bytree':1 }.
+,'min_child_weight':1, 'subsample':0.8, 'colsample_bytree':1 }. <br>
 
 ●	K-Fold Cross-Validation:
 Finally, the ‘sklearn.GroupKFold’ library was used to divide the data into 10 folds (ten pairs of training and validation), this library helps avoid the possibility of overlapping groups i.e, the document details of one QueryID would remain together and won’t randomize/split into parts, which is the only way a ‘learning to rank’ dataset should be handled. The best model out of all these folds was saved and used to predict labels for the given test data.
@@ -87,28 +84,28 @@ URL:	https://scikit- learn.org/stable/modules/generated/sklearn.model_selection.
 # Functionality
 ## Initial Steps:
  
-conda create -n <"envirenment name"> python=3.8/n
-conda activate <"environment name">/n
+conda create -n <"envirenment name"> python=3.8 <br>
+conda activate <"environment name"> <br>
 pip install -r requirements.txt
 
 
 ## Running:
 
-Python file : A2.py/n
--full_sweep(in the __main__ function) is set to False by default, this will generate a new run file based on pre-trained model predictions/n
+Python file : A2.py <br>
+-full_sweep(in the __main__ function) is set to False by default, this will generate a new run file based on pre-trained model predictions <br>
 -Setting full_sweep=True, would start hyperparameter tuning,then K-fold cross validation and then make a new run file
 	based on a newly tuned model
 
 ## Files and Descriptions:
 
 
-A2 OLD.tsv : best test run out of the three sent for scoring (NDCG 0.6215)/n
-A2.tsv- Run generated by the exact same model on Linux OS./n
+A2 OLD.tsv : best test run out of the three sent for scoring (NDCG 0.6215) <br>
+A2.tsv- Run generated by the exact same model on Linux OS. <br>
 Final_Tuned_Model.json : Pre-trained model which will be picked up to predict and generate a new 
-			tsv if full_sweep=False/n
-test.tsv : given test dataset/n
+			tsv if full_sweep=False <br>
+test.tsv : given test dataset <br>
 	
-train.tsv : given train dataset/n
+train.tsv : given train dataset <br>
 
 requirements.txt : libraries required for reproducibility
 
