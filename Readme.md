@@ -16,7 +16,7 @@ An XGBoost ‘XGBRanker()’ model was initialized and tuned to get a reasonable
 After reading both the training and test files, the ‘data.describe()’ function gave the
 following results.
 
-Figure 1
+![Picture 1]([/images/img.jpg](https://github.com/29xghost/Learning-to-Rank-XGBoost-Optuna/blob/main/Images/Picture1.jpg) "Picture 1")
 
 Figure 2
 
@@ -88,14 +88,14 @@ conda activate <envirenment name>
 pip install -r requirements.txt
 
 
-Running:
+## Running:
 
 Python file : A2.py
 -full_sweep(in the __main__ function) is set to False by default, this will generate a new run file based on pre-trained model predictions
 -Setting full_sweep=True, would start hyperparameter tuning,then K-fold cross validation and then make a new run file
 	based on a newly tuned model
 
-Files and Descriptions:
+## Files and Descriptions:
 
 
 A2 OLD.tsv : best test run out of the three sent for scoring (NDCG 0.6215)
