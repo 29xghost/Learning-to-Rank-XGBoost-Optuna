@@ -87,8 +87,8 @@ URL:	https://scikit- learn.org/stable/modules/generated/sklearn.model_selection.
 # Functionality
 ## Initial Steps:
  
-conda create -n <envirenment name> python=3.8
-conda activate <envirenment name>
+conda create -n <"envirenment name"> python=3.8
+conda activate <"environment name">
 pip install -r requirements.txt
 
 
