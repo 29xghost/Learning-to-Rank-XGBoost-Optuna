@@ -18,7 +18,7 @@ following results.
 
 ![Picture 1](https://github.com/29xghost/Learning-to-Rank-XGBoost-Optuna/blob/main/Images/Picture1.jpg)
 
-Figure 2
+![Picture 2](https://github.com/29xghost/Learning-to-Rank-XGBoost-Optuna/blob/main/Images/Picture2.jpg)
 
 
 
@@ -43,6 +43,8 @@ Optuna requires the user to create an objective function where the model and a g
 ●	Hyperparameter Tuning process:
 Generally, tuning is done by placing all parameter ranges in a grid and running the tuning process, but here, the tuning process was done in a step-by-step process, that is, tuning only a few parameters in one step, getting the best values out of those, then predicting another parameter but this time, keeping previously found parameter values fixed. For this, a total of 7 objective functions were created. In the first function, a grid for ‘objective’,’min_child_weight’ and ‘max_depth’ was given, rest being set to default values, the best set was found to be:
 
+![Picture 3](https://github.com/29xghost/Learning-to-Rank-XGBoost-Optuna/blob/main/Images/Picture3.jpg)
+
 then, in the next step, to get a more precise value of these parameters, a tighter bound was taken as the grid in the second function, however, the best set didn’t change, so these were taken as final values for these parameters. Now, in the third
  
 function, the parameters found above were kept fixed along with a grid for gamma and a tighter bound grid for the same in function four, the value of gamma in both functions didn’t affect the best NDCG, so gamma was not taken as a tuned hyperparameter in the final set, in function five and six, ‘subsample’ and ‘colsample_bytree’ were tuned in the same way. Finally, in the last and final function, the ‘eval_metric’ was tuned. After each objective function iteration, the best set of parameters were stored in a dictionary ‘final_params’. The final set of parameters obtained were:
@@ -52,6 +54,8 @@ final_params=  {'eval_metric':'ndcg',  'objective':'rank:pairwise',  'max_depth'
 ●	K-Fold Cross-Validation:
 Finally, the ‘sklearn.GroupKFold’ library was used to divide the data into 10 folds (ten pairs of training and validation), this library helps avoid the possibility of overlapping groups i.e, the document details of one QueryID would remain together and won’t randomize/split into parts, which is the only way a ‘learning to rank’ dataset should be handled. The best model out of all these folds was saved and used to predict labels for the given test data.
 Here’s a plot showing the progress in NDCG scores with objective functions along with the best KFold score:
+
+![Picture 4](https://github.com/29xghost/Learning-to-Rank-XGBoost-Optuna/blob/main/Images/Picture4.jpg)
 
 
 
