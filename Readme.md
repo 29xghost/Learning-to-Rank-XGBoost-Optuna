@@ -84,14 +84,14 @@ Here’s a plot showing the progress in NDCG scores with objective functions alo
 
 The test run produced from the given test dataset using these hyperparameters gave an NDCG score of 0.6215. Running the same model with exact same parameters on Linux gave different predictions, both run files have been enclosed in the zip.
 ## LIBRARIES USED
-Key libraries used in this assignment were:
+Key libraries used were:
 
-LIBRARY	VERSION
-Pandas	1.3.2
-Numpy	1.20.3
-Scikit-learn	0.24.2
-XGBoost	1.4.2
-Optuna	2.9.1
+LIBRARY	VERSION<br>
+Pandas	1.3.2<br>
+Numpy	1.20.3<br>
+Scikit-learn	0.24.2<br>
+XGBoost	1.4.2<br>
+Optuna	2.9.1<br>
  
 
 ## REFERENCES
